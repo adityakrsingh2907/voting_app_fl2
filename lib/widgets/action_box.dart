@@ -35,19 +35,20 @@ class ActionBox extends StatelessWidget {
           Text(
             action,
             style: TextStyle(
-                fontSize: 23.0,
+                fontSize: 18.0,
                 color: Colors.white,
                 fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: IconButton(
-                icon: Icon(
-                  Icons.arrow_right_alt,
-                  color: Colors.white,
-                ),
-                onPressed: null),
-          )
+          // Align(
+          //   alignment: Alignment.bottomRight,
+          //   child: IconButton(
+          //       icon: Icon(
+          //         Icons.arrow_right_alt,
+          //         color: Colors.white,
+          //       ),
+          //       onPressed: null),
+          // )
         ],
       ),
     );
