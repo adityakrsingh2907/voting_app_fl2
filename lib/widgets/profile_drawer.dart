@@ -63,7 +63,7 @@ class ProfileDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.info_outline, size: 30),
-              title: const Text('Abou'),
+              title: const Text('About'),
               onTap: () {},
             ),
             ListTile(
