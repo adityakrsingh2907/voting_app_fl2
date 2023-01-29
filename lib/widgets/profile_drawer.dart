@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
-import 'package:voting_app/services/auth.dart';
+
+import '../constants.dart';
+import '../services/auth.dart';
 
 class ProfileDrawer extends StatelessWidget {
   ProfileDrawer({super.key});

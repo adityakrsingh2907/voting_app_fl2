@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:voting_app/constants.dart';
 
 class NewVote extends StatelessWidget {
@@ -13,9 +11,7 @@ class NewVote extends StatelessWidget {
         title: const Text('New Vote'),
         backgroundColor: Constants.appBarColor,
       ),
-      body: Container(
-        child: const Text('New Vote'),
-      ),
+      body: const Text('New Vote'),
     );
   }
 }

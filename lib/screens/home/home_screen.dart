@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
-import 'package:voting_app/screens/new_vote.dart';
-import 'package:voting_app/screens/user_elections.dart';
-import 'package:voting_app/widgets/action_box.dart';
-import 'package:voting_app/widgets/profile_drawer.dart';
+
+import '../../constants.dart';
+
+import '../../screens/new_vote.dart';
+import '../../screens/user_elections.dart';
+
+import '../../widgets/action_box.dart';
+import '../../widgets/profile_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: ((context) => const NewVote()),
+        builder: (context) => const NewVote(),
+      ),
+    );
+  }
+
+  void navigateToUserElections(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const UserElections(),
       ),
     );
   }
@@ -53,37 +65,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      width: MediaQuery.of(context).size.width * 0.60,
-                      height: 50.0,
-                      margin: const EdgeInsets.only(top: 20.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      child: Form(
-                        key: GlobalKey<FormState>(),
-                        child: TextFormField(
-                          controller: _electionAccessCodeController,
-                          keyboardType: TextInputType.text,
-                          style: const TextStyle(
-                            fontSize: 22.0,
-                            color: Colors.indigo,
-                            fontWeight: FontWeight.bold,
+                    width: MediaQuery.of(context).size.width * 0.60,
+                    height: 50.0,
+                    margin: const EdgeInsets.only(top: 20.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    child: Form(
+                      key: GlobalKey<FormState>(),
+                      child: TextFormField(
+                        controller: _electionAccessCodeController,
+                        keyboardType: TextInputType.text,
+                        style: const TextStyle(
+                          fontSize: 22.0,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18.0),
                           ),
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ),
-                            hintText: "Enter the election code",
-                            hintStyle:
-                                const TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
-                            prefixIcon: const Icon(
-                              Icons.lock,
-                            ),
+                          hintText: "Enter the election code",
+                          hintStyle: const TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock,
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                   Container(
                     margin: const EdgeInsets.only(top: 20.0, left: 5.0),
                     decoration: BoxDecoration(
@@ -95,16 +110,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     child: TextButton.icon(
-                        onPressed: (() => {}),
-                        //Database Code to be addded
-                        icon: const Icon(
-                          Icons.check_circle,
+                      onPressed: (() => {}),
+                      //Database Code to be addded
+                      icon: const Icon(
+                        Icons.check_circle,
+                        color: Colors.white,
+                      ),
+                      label: const Text(
+                        "Validate",
+                        style: TextStyle(
                           color: Colors.white,
+                          fontSize: 16.0,
+                          letterSpacing: 0.8,
                         ),
-                        label: const Text(
-                          "Validate",
-                          style: TextStyle(color: Colors.white, fontSize: 20.0),
-                        )),
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -123,19 +143,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const ActionBox(
-                      action: "Poll", description: "Create a new poll", image: Icons.poll),
+                    action: "Poll",
+                    description: "Create a new poll",
+                    image: Icons.poll,
+                  ),
                 ],
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) =>
-                                const UserElections()))), //Get.to(UserElections()),
+                    onTap: () => navigateToUserElections(context),
                     child: const ActionBox(
                       action: "My Elections",
                       description: "Create a new vote",
@@ -143,7 +161,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const ActionBox(
-                      action: "FAQ", description: "Create a new poll", image: Icons.description),
+                    action: "FAQ",
+                    description: "Create a new poll",
+                    image: Icons.description,
+                  ),
                 ],
               ),
             ],
@@ -153,43 +174,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Constants.appBarColor,
-//         title: const Text('ElectChain'),
-//         actions: [],
-//       ),
-//       drawer: ProfileDrawer(),
-//       body: const Center(
-//         child: Text('Yes'),
-//       ),
-//     );
-//   }
-// }

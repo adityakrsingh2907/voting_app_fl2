@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
-import 'package:voting_app/services/auth.dart';
-import 'package:voting_app/widgets/loading.dart';
+
+import '../../constants.dart';
+import '../../services/auth.dart';
+import '../../widgets/loading.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;

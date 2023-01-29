@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:voting_app/models/user_model.dart';
-import 'package:voting_app/screens/wrapper.dart';
-import 'package:voting_app/services/auth.dart';
+
+import './models/user_model.dart';
+import './screens/wrapper.dart';
+import './services/auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
