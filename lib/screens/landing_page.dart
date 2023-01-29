@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../screens/authenticate/authenticate.dart';
 import '../widgets/logo_widget.dart';
-import './home/home_screen.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -13,17 +13,17 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  void navigateToHome(BuildContext context) {
+  void navigateToAuthenticate(BuildContext context) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
+      MaterialPageRoute(builder: (context) => const Authenticate()),
     );
   }
 
   @override
   void initState() {
     Timer(const Duration(seconds: 2), () {
-      navigateToHome(context);
+      navigateToAuthenticate(context);
     });
     super.initState();
   }
@@ -32,7 +32,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onVerticalDragUpdate: (dragUpdateDetails) => navigateToHome(context),
+        onVerticalDragUpdate: (dragUpdateDetails) => navigateToAuthenticate(context),
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -70,10 +70,11 @@ class _LandingPageState extends State<LandingPage> {
                     Text(
                       'A Decentralized Voting App',
                       style: TextStyle(
-                          color: Colors.white60,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 1),
+                        color: Colors.white60,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 1,
+                      ),
                     ),
                   ],
                 ),

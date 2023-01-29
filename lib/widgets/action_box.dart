@@ -16,8 +16,8 @@ class ActionBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10.0),
-      height: 150.0,
-      width: 150.0,
+      height: 160.0,
+      width: 175.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
         gradient: const LinearGradient(

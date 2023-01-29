@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 
-import '../../screens/new_vote.dart';
-import '../../screens/user_elections.dart';
+import '../about/faq_screen.dart';
+import '../elections/new_vote.dart';
+import '../elections/user_elections.dart';
 
 import '../../widgets/action_box.dart';
 import '../../widgets/profile_drawer.dart';
@@ -16,11 +17,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final TextEditingController _electionAccessCodeController = TextEditingController();
+  final TextEditingController _electionCodeController = TextEditingController();
 
   void navigateToNewElection(BuildContext context) {
-    Navigator.push(
-      context,
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const NewVote(),
       ),
@@ -28,10 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void navigateToUserElections(BuildContext context) {
-    Navigator.push(
-      context,
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const UserElections(),
+      ),
+    );
+  }
+
+  void navigateToFaq(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const FaqScreen(),
       ),
     );
   }
@@ -42,7 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Constants.appBarColor,
         title: const Text('ElectChain'),
-        actions: [],
       ),
       drawer: ProfileDrawer(),
       body: SingleChildScrollView(
@@ -51,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(height: 30.0),
               const Text(
                 "ENTER A VOTE CODE",
                 style: TextStyle(
@@ -75,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Form(
                       key: GlobalKey<FormState>(),
                       child: TextFormField(
-                        controller: _electionAccessCodeController,
+                        controller: _electionCodeController,
                         keyboardType: TextInputType.text,
                         style: const TextStyle(
                           fontSize: 22.0,
@@ -132,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 40.0,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () => navigateToNewElection(context),
@@ -142,15 +147,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       image: Icons.how_to_vote,
                     ),
                   ),
-                  const ActionBox(
-                    action: "Poll",
-                    description: "Create a new poll",
-                    image: Icons.poll,
+                  GestureDetector(
+                    child: const ActionBox(
+                      action: "Poll",
+                      description: "Create a new poll",
+                      image: Icons.poll,
+                    ),
                   ),
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
                     onTap: () => navigateToUserElections(context),
@@ -160,10 +167,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       image: Icons.ballot,
                     ),
                   ),
-                  const ActionBox(
-                    action: "FAQ",
-                    description: "Create a new poll",
-                    image: Icons.description,
+                  InkWell(
+                    onTap: () => navigateToFaq(context),
+                    child: const ActionBox(
+                      action: "FAQ",
+                      description: "Create a new poll",
+                      image: Icons.description,
+                    ),
                   ),
                 ],
               ),

@@ -21,12 +21,14 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
+  String name = '';
   String error = '';
 
-  void register(String email, String password) async {
+  void register(String email, String password, String name) async {
     if (_formKey.currentState!.validate()) {
       setState(() => isLoading = true);
-      dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+      dynamic result = await _auth.registerWithEmailAndPassword(email, password, name);
+
       if (result == null) {
         setState(() => isLoading = false);
         setState(() => error = 'Please supply a valid email');
@@ -62,6 +64,12 @@ class _RegisterState extends State<Register> {
             children: <Widget>[
               const SizedBox(height: 20),
               TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Name'),
+                validator: (value) => value!.isEmpty ? 'Cannot be empty' : null,
+                onChanged: (value) => setState(() => name = value),
+              ),
+              const SizedBox(height: 20),
+              TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Email'),
                 validator: (value) => value!.isEmpty ? 'Cannot be empty' : null,
                 onChanged: (value) => setState(() => email = value),
@@ -78,7 +86,7 @@ class _RegisterState extends State<Register> {
               isLoading
                   ? const Loading()
                   : ElevatedButton(
-                      onPressed: () => register(email, password),
+                      onPressed: () => register(email, password, name),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Constants.appBarColor,
                         elevation: 1,

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Roboto',
         ),
-        home: Wrapper(),
+        home: const Wrapper(),
       ),
     );
   }

@@ -1,18 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
+
+import '../screens/elections/user_elections.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/about/about_screen.dart';
+import '../screens/about/faq_screen.dart';
+
 import '../services/auth.dart';
+
+import '../models/user_model.dart';
 
 class ProfileDrawer extends StatelessWidget {
   ProfileDrawer({super.key});
 
   final AuthService _auth = AuthService();
 
-  void navigateToHome() {}
+  void navigateToHome(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
+  }
 
-  void navigateToMyElections() {}
+  void navigateToMyElections(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const UserElections(),
+      ),
+    );
+  }
 
-  void navigateToAbout() {}
+  void navigateToAbout(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AboutScreen(),
+      ),
+    );
+  }
+
+  void navigateToFaq(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const FaqScreen(),
+      ),
+    );
+  }
 
   void logOut() async {
     await _auth.signOut();
@@ -20,10 +59,12 @@ class ProfileDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserModel?>(context);
+    String displayName = user!.displayName;
+
     return SafeArea(
       child: Drawer(
         child: ListView(
-          // padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
           children: [
             SizedBox(
               height: 215,
@@ -40,25 +81,31 @@ class ProfileDrawer extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     CircleAvatar(
                       radius: 50,
-                      child: Icon(Icons.person, size: 50),
+                      child: Center(
+                        child: Text(
+                          displayName[0],
+                          style: const TextStyle(fontSize: 50),
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
-                      'User Name',
-                      style: TextStyle(
+                      displayName,
+                      style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
+                        letterSpacing: 0.6,
                       ),
                     ),
                     Text(
-                      'user@emailaddress.com',
-                      style: TextStyle(
+                      user.email,
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.white60,
-                        letterSpacing: 0.9,
+                        letterSpacing: 0.6,
                       ),
                     )
                   ],
@@ -68,22 +115,22 @@ class ProfileDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.home, size: 30),
               title: const Text('Home'),
-              onTap: () {},
+              onTap: () => navigateToHome(context),
             ),
             ListTile(
               leading: const Icon(Icons.all_inbox, size: 30),
               title: const Text('My Elections'),
-              onTap: () {},
+              onTap: () => navigateToMyElections(context),
             ),
             ListTile(
               leading: const Icon(Icons.info_outline, size: 30),
               title: const Text('About'),
-              onTap: () {},
+              onTap: () => navigateToAbout(context),
             ),
             ListTile(
               leading: const Icon(Icons.question_mark, size: 30),
               title: const Text('FAQ'),
-              onTap: () {},
+              onTap: () => navigateToFaq(context),
             ),
             ListTile(
               leading: const Icon(Icons.logout, size: 30),

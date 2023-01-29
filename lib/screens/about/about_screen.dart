@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:voting_app/constants.dart';
+import 'package:voting_app/widgets/profile_drawer.dart';
 
-class NewVote extends StatelessWidget {
-  const NewVote({super.key});
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Vote'),
         backgroundColor: Constants.appBarColor,
+        title: const Text('About ElectChain'),
       ),
-      body: const Text('New Vote'),
+      drawer: ProfileDrawer(),
     );
   }
 }

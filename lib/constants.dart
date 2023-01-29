@@ -6,6 +6,9 @@ class Constants {
   static const Color gradientColor1 = Color.fromRGBO(62, 81, 181, 1);
   static const Color gradientColor2 = Color.fromRGBO(85, 132, 214, 1);
   static const Color backgroundColor1 = Color.fromRGBO(198, 201, 132, 1);
+
+  static const String defaultProfilePicUrl =
+      'https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg';
 }
 
 const textInputDecoration = InputDecoration(
