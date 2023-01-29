@@ -7,3 +7,17 @@ class Constants {
   static const Color gradientColor2 = Color.fromRGBO(85, 132, 214, 1);
   static const Color backgroundColor1 = Color.fromRGBO(198, 201, 132, 1);
 }
+
+const textInputDecoration = InputDecoration(
+  fillColor: Colors.white,
+  filled: true,
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.white, width: 2),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.white, width: 2),
+  ),
+  errorBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.red, width: 2),
+  ),
+);

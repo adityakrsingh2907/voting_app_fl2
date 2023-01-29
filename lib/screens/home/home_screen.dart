@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voting_app/constants.dart';
-import 'package:voting_app/screens/newvote.dart';
+import 'package:voting_app/screens/new_vote.dart';
 import 'package:voting_app/screens/user_elections.dart';
 import 'package:voting_app/widgets/action_box.dart';
 import 'package:voting_app/widgets/profile_drawer.dart';
@@ -13,7 +13,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController _electionAccessCodeController = TextEditingController();
+  final TextEditingController _electionAccessCodeController = TextEditingController();
+
+  void navigateToNewElection(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: ((context) => const NewVote()),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('ElectChain'),
         actions: [],
       ),
-      drawer: const ProfileDrawer(),
+      drawer: ProfileDrawer(),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 10.0),
@@ -32,7 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
               // SizedBox(height: 30.0),
               const Text(
                 "ENTER A VOTE CODE",
-                style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.indigo),
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 50.0,
                       margin: const EdgeInsets.only(top: 20.0),
                       decoration: BoxDecoration(
-                          color: Colors.grey[300], borderRadius: BorderRadius.circular(18.0)),
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
                       child: Form(
                         key: GlobalKey<FormState>(),
                         child: TextFormField(
@@ -56,7 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           decoration: InputDecoration(
                             fillColor: Colors.white,
-                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(18.0)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
                             hintText: "Enter the election code",
                             hintStyle:
                                 const TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
@@ -97,10 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: ((context) => const NewVote())));
-                    },
+                    onTap: () => navigateToNewElection(context),
                     child: const ActionBox(
                       action: "Create Election",
                       description: "Create a new vote",

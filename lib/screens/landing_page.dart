@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../widgets/logo_widget.dart';
-import './home_screen.dart';
+import 'home/home_screen.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

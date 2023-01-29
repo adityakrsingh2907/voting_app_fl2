@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:voting_app/constants.dart';
+import 'package:voting_app/services/auth.dart';
 
 class ProfileDrawer extends StatelessWidget {
-  const ProfileDrawer({super.key});
+  ProfileDrawer({super.key});
+
+  final AuthService _auth = AuthService();
+
+  void navigateToHome() {}
+
+  void navigateToMyElections() {}
+
+  void navigateToAbout() {}
+
+  void logOut() async {
+    await _auth.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +87,7 @@ class ProfileDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.logout, size: 30),
               title: const Text('Logout'),
-              onTap: () {},
+              onTap: logOut,
             ),
           ],
         ),
