@@ -43,7 +43,6 @@ class AuthService {
       );
       User user = result.user!;
       await user.updateDisplayName(displayName);
-      await user.updatePhotoURL(Constants.defaultProfilePicUrl);
 
       // Create a new document for the user with the uid
 
