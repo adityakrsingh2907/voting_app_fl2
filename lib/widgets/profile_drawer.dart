@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
+
 import 'package:provider/provider.dart';
-import 'dart:math';
 
 import '../constants.dart';
 
@@ -59,25 +58,12 @@ class ProfileDrawer extends StatelessWidget {
     await _auth.signOut();
   }
 
-  List<Color> colors = [
-    Colors.red,
-    Colors.green,
-    Colors.purple,
-    Colors.orange,
-    Colors.pink,
-    Colors.teal,
-    Colors.deepOrange,
-    Colors.deepPurple,
-    Colors.lightGreen,
-    Colors.grey,
-  ];
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
-    final profileColor = colors[Random().nextInt(colors.length)];
 
-    String displayName = user!.displayName;
+    String? displayName = user!.displayName;
+    String profileDisplayName = user.displayName[0];
 
     return SafeArea(
       child: Drawer(
@@ -101,10 +87,10 @@ class ProfileDrawer extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundColor: profileColor,
+                      backgroundColor: Colors.orangeAccent,
                       child: Center(
                         child: Text(
-                          displayName[0],
+                          profileDisplayName,
                           style: const TextStyle(
                             fontSize: 50,
                             color: Colors.white,
