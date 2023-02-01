@@ -24,10 +24,10 @@ class _RegisterState extends State<Register> {
   String name = '';
   String error = '';
 
-  void register(String email, String password, String name) async {
+  void register(String email, String password, String name, BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       setState(() => isLoading = true);
-      dynamic result = await _auth.registerWithEmailAndPassword(email, password, name);
+      dynamic result = await _auth.registerWithEmailAndPassword(email, password, name, context);
 
       if (result == null) {
         setState(() => isLoading = false);
@@ -86,7 +86,7 @@ class _RegisterState extends State<Register> {
               isLoading
                   ? const Loading()
                   : ElevatedButton(
-                      onPressed: () => register(email, password, name),
+                      onPressed: () => register(email, password, name, context),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Constants.appBarColor,
                         elevation: 1,

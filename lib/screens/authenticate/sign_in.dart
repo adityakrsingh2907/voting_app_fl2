@@ -34,72 +34,89 @@ class _SignInState extends State<SignIn> {
     }
   }
 
+  void signInWithGoogle(BuildContext context) {
+    _auth.signInWithGoogle(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     backgroundColor: Constants.appBarColor,
+    //     elevation: 0,
+    //     title: const Text('Sign in to Brew Crew'),
+    //     actions: <Widget>[
+    //       TextButton.icon(
+    //         onPressed: () {
+    //           widget.toggleView();
+    //         },
+    //         icon: const Icon(Icons.person, color: Colors.white),
+    //         label: const Text(
+    //           'Register',
+    //           style: TextStyle(color: Colors.white),
+    //         ),
+    //       ),
+    //     ],
+    //   ),
+    //   body: Container(
+    //     padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+    //     child: Form(
+    //       key: _formKey,
+    //       child: Column(
+    //         children: <Widget>[
+    //           const SizedBox(height: 20),
+    //           TextFormField(
+    //             decoration: textInputDecoration.copyWith(hintText: 'Email'),
+    //             validator: (value) => value!.isEmpty ? 'Cannot be empty' : null,
+    //             onChanged: (value) => setState(() => email = value),
+    //           ),
+    //           const SizedBox(height: 20),
+    //           TextFormField(
+    //             decoration: textInputDecoration.copyWith(hintText: 'Password'),
+    //             obscureText: true,
+    //             validator: (value) =>
+    //                 value!.length < 6 ? 'Must be at least 6 characters long' : null,
+    //             onChanged: (value) => setState(() => password = value),
+    //           ),
+    //           const SizedBox(height: 20),
+    //           isLoading
+    //               ? const Loading()
+    //               : Row(
+    //                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+    //                   children: [
+    //                     ElevatedButton(
+    //                       onPressed: () => signInWithEmailAndPassword(email, password),
+    //                       style: ElevatedButton.styleFrom(
+    //                         backgroundColor: Constants.appBarColor,
+    //                         elevation: 1,
+    //                       ),
+    //                       child: const Text(
+    //                         'Sign In',
+    //                         style: TextStyle(color: Colors.white),
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //           const SizedBox(height: 12),
+    //           Text(
+    //             error,
+    //             style: const TextStyle(color: Colors.red, fontSize: 14),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Constants.appBarColor,
-        elevation: 0,
-        title: const Text('Sign in to Brew Crew'),
-        actions: <Widget>[
-          TextButton.icon(
-            onPressed: () {
-              widget.toggleView();
-            },
-            icon: const Icon(Icons.person, color: Colors.white),
-            label: const Text(
-              'Register',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
+        title: const Text('Sign in'),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 20),
-              TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Email'),
-                validator: (value) => value!.isEmpty ? 'Cannot be empty' : null,
-                onChanged: (value) => setState(() => email = value),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                decoration: textInputDecoration.copyWith(hintText: 'Password'),
-                obscureText: true,
-                validator: (value) =>
-                    value!.length < 6 ? 'Must be at least 6 characters long' : null,
-                onChanged: (value) => setState(() => password = value),
-              ),
-              const SizedBox(height: 20),
-              isLoading
-                  ? const Loading()
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () => signInWithEmailAndPassword(email, password),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Constants.appBarColor,
-                            elevation: 1,
-                          ),
-                          child: const Text(
-                            'Sign In',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-              const SizedBox(height: 12),
-              Text(
-                error,
-                style: const TextStyle(color: Colors.red, fontSize: 14),
-              ),
-            ],
-          ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => signInWithGoogle(context),
+          child: const Text('Sign in with google'),
         ),
       ),
     );

@@ -54,8 +54,8 @@ class ProfileDrawer extends StatelessWidget {
     );
   }
 
-  void logOut() async {
-    await _auth.signOut();
+  void logOut(BuildContext context) async {
+    await _auth.signOut(context);
   }
 
   @override
@@ -142,7 +142,7 @@ class ProfileDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.logout, size: 30),
               title: const Text('Logout'),
-              onTap: logOut,
+              onTap: () => logOut(context),
             ),
           ],
         ),
