@@ -5,7 +5,7 @@ import '../../constants.dart';
 import '../../services/auth.dart';
 
 import '../about/faq_screen.dart';
-import '../elections/new_vote.dart';
+import '../elections/create_election.dart';
 import '../elections/user_elections.dart';
 
 import '../../widgets/action_box.dart';
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void navigateToNewElection(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const NewVote(),
+        builder: (context) => const CreateElection(),
       ),
     );
   }
@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Constants.backgroundColor1,
       appBar: AppBar(
         backgroundColor: Constants.appBarColor,
         title: const Text('ElectChain'),
@@ -161,6 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   GestureDetector(
+                    onTap: () {},
                     child: const ActionBox(
                       action: "Poll",
                       description: "Create a new poll",
