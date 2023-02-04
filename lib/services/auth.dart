@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -60,10 +59,6 @@ class AuthService {
       await user.updateDisplayName(displayName);
       await user.reload();
       user = _auth.currentUser!;
-      print('user.displayName ===== ${user.displayName}');
-      print('user.email ===== ${user.email}');
-
-      // TODO: Create a new document for the user with the uid
 
       showSnackBar(context, 'Registered Successfully');
       return user;
