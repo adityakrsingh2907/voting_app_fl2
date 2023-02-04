@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({super.key});
+  final double height;
+  final double width;
+  final String logoPath;
+
+  const Logo({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.logoPath,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: const AlwaysStoppedAnimation(-45 / 360),
-      child: Image.asset(Constants.electChainLogo, width: 70, height: 70),
-    );
+    return Image.asset(logoPath, width: width, height: height);
   }
 }
