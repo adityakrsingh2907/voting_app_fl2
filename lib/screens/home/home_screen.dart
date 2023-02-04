@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants.dart';
 
+import '../../services/auth.dart';
+
 import '../about/faq_screen.dart';
 import '../elections/new_vote.dart';
 import '../elections/user_elections.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final AuthService _auth = AuthService();
   final TextEditingController _electionCodeController = TextEditingController();
 
   void navigateToNewElection(BuildContext context) {
@@ -43,12 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void logOut(BuildContext context) async {
+    await _auth.signOut(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Constants.appBarColor,
         title: const Text('ElectChain'),
+        actions: [
+          IconButton(
+            onPressed: () => logOut(context),
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       drawer: ProfileDrawer(),
       body: SingleChildScrollView(

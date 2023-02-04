@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:voting_app/constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../models/user_model.dart';
+import '../utils/show_snack_bar.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -28,6 +32,11 @@ class AuthService {
         password: password,
       );
       User user = result.user!;
+
+      await user.reload();
+
+      user = _auth.currentUser!;
+
       return user;
     } catch (error) {
       return null;
@@ -35,7 +44,12 @@ class AuthService {
   }
 
   // Register with email and password
-  Future registerWithEmailAndPassword(String email, String password, String displayName) async {
+  Future registerWithEmailAndPassword(
+    String email,
+    String password,
+    String displayName,
+    BuildContext context,
+  ) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -43,21 +57,41 @@ class AuthService {
       );
       User user = result.user!;
       await user.updateDisplayName(displayName);
+      await user.reload();
+      user = _auth.currentUser!;
 
-      // Create a new document for the user with the uid
+      showSnackBar(context, 'Registered Successfully');
+      return user;
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
 
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      return null;
+  // Sign in with Google
+  Future<void> signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
+
+        UserCredential userCredential = await _auth.signInWithCredential(credential);
+      }
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
     }
   }
 
   // Sign out
-  Future signOut() async {
+  Future signOut(BuildContext context) async {
     try {
       return await _auth.signOut();
-    } catch (e) {
-      return null;
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
     }
   }
 }
