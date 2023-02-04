@@ -67,6 +67,7 @@ class ProfileDrawer extends StatelessWidget {
 
     return SafeArea(
       child: Drawer(
+        backgroundColor: Constants.backgroundColor1,
         child: ListView(
           children: [
             SizedBox(
