@@ -36,6 +36,7 @@ class _CreateElectionState extends State<CreateElection> {
               width: 300,
               height: 120,
               logoPath: Constants.electChainLogo2,
+              angle: 0,
             )),
             const SizedBox(height: 35),
             const Text(

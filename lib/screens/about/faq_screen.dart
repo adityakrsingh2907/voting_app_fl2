@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
-import 'package:voting_app/widgets/logo_widget.dart';
+
+import '../../constants.dart';
+import '../../widgets/logo_widget.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});
@@ -17,15 +18,13 @@ class FaqScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 100),
-          Center(
-            child: Transform.rotate(
+          const SizedBox(height: 75),
+          const Center(
+            child: Logo(
               angle: 150,
-              child: const Logo(
-                width: 150,
-                height: 150,
-                logoPath: Constants.electChainLogo1,
-              ),
+              width: 150,
+              height: 150,
+              logoPath: Constants.electChainLogo1,
             ),
           ),
           const SizedBox(height: 75),
