@@ -24,49 +24,6 @@ class AuthService {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
-  // Sign in with email and password
-  Future signInWithEmailAndPassword(String email, String password) async {
-    try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      User user = result.user!;
-
-      await user.reload();
-
-      user = _auth.currentUser!;
-
-      return user;
-    } catch (error) {
-      return null;
-    }
-  }
-
-  // Register with email and password
-  Future registerWithEmailAndPassword(
-    String email,
-    String password,
-    String displayName,
-    BuildContext context,
-  ) async {
-    try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      User user = result.user!;
-      await user.updateDisplayName(displayName);
-      await user.reload();
-      user = _auth.currentUser!;
-
-      showSnackBar(context, 'Registered Successfully');
-      return user;
-    } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!);
-    }
-  }
-
   // Sign in with Google
   Future<void> signInWithGoogle(BuildContext context) async {
     try {
