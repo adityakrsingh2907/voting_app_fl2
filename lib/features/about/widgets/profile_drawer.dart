@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
-
-import '../screens/elections/user_elections.dart';
-import '../screens/home/home_screen.dart';
-import '../screens/about/about_screen.dart';
-import '../screens/about/faq_screen.dart';
-
-import '../services/auth.dart';
-
-import '../models/user_model.dart';
+import '../../../constants.dart';
+import '../../../models/user_model.dart';
+import '../../authenticate/services/auth.dart';
+import '../../elections/screens/user_elections.dart';
+import '../../home/screens/home_screen.dart';
+import '../screens/about_screen.dart';
+import '../screens/faq_screen.dart';
 
 class ProfileDrawer extends StatelessWidget {
   ProfileDrawer({super.key});

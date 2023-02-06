@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
 
-import '../../widgets/gradient_button_1.dart';
-import '../../widgets/logo_widget.dart';
+import '../../../constants.dart';
+import '../../../shared/widgets/gradient_button_1.dart';
+import '../../../shared/widgets/logo_widget.dart';
 
 class CreateElection extends StatefulWidget {
+  static const routeName = '/create-election';
+
   const CreateElection({super.key});
 
   @override

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'sign_in.dart';
+import './sign_in.dart';
 
 class Authenticate extends StatefulWidget {
+  static const routeName = '/auth';
+
   const Authenticate({super.key});
 
   @override

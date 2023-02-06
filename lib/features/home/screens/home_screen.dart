@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../../constants.dart';
 
-import '../../services/auth.dart';
+import '../../authenticate/services/auth.dart';
 
-import '../about/faq_screen.dart';
-import '../elections/create_election.dart';
-import '../elections/user_elections.dart';
+import '../../about/screens/faq_screen.dart';
+import '../../elections/screens/create_election.dart';
+import '../../elections/screens/user_elections.dart';
 
-import '../../widgets/action_box.dart';
-import '../../widgets/profile_drawer.dart';
+import '../widgets/action_box.dart';
+import '../../about/widgets/profile_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

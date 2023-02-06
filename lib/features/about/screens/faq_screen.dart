@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import '../../widgets/logo_widget.dart';
+import '../../../constants.dart';
+import '../../../shared/widgets/logo_widget.dart';
 
 class FaqScreen extends StatelessWidget {
+  static const routeName = '/faq';
+
   const FaqScreen({super.key});
 
   @override

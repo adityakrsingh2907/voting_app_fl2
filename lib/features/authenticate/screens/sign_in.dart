@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-import '../../services/auth.dart';
-import '../../widgets/loading.dart';
+import '../../../constants.dart';
+import '../../../shared/widgets/loading.dart';
+import '../services/auth.dart';
 
 class SignIn extends StatefulWidget {
+  static const routeName = '/sign-in';
+
   final Function toggleView;
 
   const SignIn({super.key, required this.toggleView});

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
-import 'package:voting_app/widgets/profile_drawer.dart';
+
+import '../../../constants.dart';
+import '../widgets/profile_drawer.dart';
 
 class AboutScreen extends StatelessWidget {
+  static const routeName = '/about';
+
   const AboutScreen({super.key});
 
   @override

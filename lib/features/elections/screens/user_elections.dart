@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:voting_app/constants.dart';
-import 'package:voting_app/widgets/profile_drawer.dart';
+
+import '../../../constants.dart';
+import '../../about/widgets/profile_drawer.dart';
 
 class UserElections extends StatelessWidget {
+  static const routeName = '/user-elections';
+
   const UserElections({super.key});
 
   @override

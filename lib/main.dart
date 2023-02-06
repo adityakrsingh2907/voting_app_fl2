@@ -2,9 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './features/authenticate/services/auth.dart';
 import './models/user_model.dart';
-import './screens/wrapper.dart';
-import './services/auth.dart';
+import 'shared/screens/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
