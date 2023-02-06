@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,6 +10,7 @@ import '../../../utils/show_snack_bar.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   UserModel? _userFromFirebaseUser(User? user) {
     return user != null
@@ -20,6 +22,7 @@ class AuthService {
         : null;
   }
 
+  CollectionReference get _users => _firestore.collection('users');
   Stream<UserModel?> get user {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
@@ -37,10 +40,29 @@ class AuthService {
         );
 
         UserCredential userCredential = await _auth.signInWithCredential(credential);
+        UserModel userModel;
+
+        if (userCredential.additionalUserInfo!.isNewUser) {
+          userModel = UserModel(
+            displayName: userCredential.user!.displayName ?? 'No Name',
+            email: userCredential.user!.email ?? '',
+            uid: userCredential.user!.uid,
+          );
+          await _users.doc(userCredential.user!.uid).set(userModel.toMap());
+        } else {
+          userModel = await getUserData(userCredential.user!.uid).first;
+        }
       }
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
+  }
+
+  Stream<UserModel> getUserData(String uid) {
+    return _users
+        .doc(uid)
+        .snapshots()
+        .map((event) => UserModel.fromMap(event.data() as Map<String, dynamic>));
   }
 
   // Sign out
